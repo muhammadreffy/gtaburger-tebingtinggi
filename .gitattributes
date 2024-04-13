@@ -1,0 +1,10 @@
+# .gitattributes
+
+# Mengabaikan perubahan karakter line ending pada file-file di dalam direktori node_modules
+node_modules/* -text
+
+# Mengabaikan perubahan karakter line ending pada file package-lock.json
+package-lock.json -text
+
+# Mengabaikan perubahan karakter line ending pada file package.json
+package.json -text
