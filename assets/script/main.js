@@ -227,7 +227,7 @@ const addOrder = () => {
   updateTotalPrice();
 
   const summaryOrder = document.getElementById("summaryOrder");
-  summaryOrder.style.display = "block";
+  summaryOrder.classList.remove("d-none");
 
   isOrderAdded = true;
   if (isOrderAdded) {
@@ -293,3 +293,35 @@ const formatCurrency = (amount) =>
   "Rp" + amount.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, "$&,");
 
 btnAddOrder.addEventListener("click", addOrder);
+
+document.addEventListener("click", (event) => {
+  if (event.target.classList.contains("btn_order-now_summary-order")) {
+    const currentModal = document.querySelector(".modal.show");
+    const btnLoading = document.getElementById("btn__loading");
+    const btnOrderNow = document.getElementById("btn_order-now");
+    const btnSuccessOrder = document.getElementById("btn_success-order");
+    const alertSuccess = document.querySelector(".alert-success");
+
+    const modalBackdrop = document.querySelector(".modal-backdrop");
+    if (modalBackdrop) {
+      modalBackdrop.parentNode.removeChild(modalBackdrop);
+    }
+
+    if (currentModal) {
+      currentModal.classList.remove("show");
+    }
+
+    document.body.classList.remove("modal-open");
+    document.body.style.overflowY = "auto";
+    document.body.style.overflowX = "hidden";
+
+    btnOrderNow.classList.add("d-none");
+    btnLoading.classList.remove("d-none");
+
+    setTimeout(() => {
+      btnLoading.classList.add("d-none");
+      btnSuccessOrder.classList.remove("d-none");
+      alertSuccess.classList.remove("d-none");
+    }, 5000);
+  }
+});
