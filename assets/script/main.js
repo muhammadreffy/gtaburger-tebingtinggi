@@ -1,6 +1,10 @@
 // ====================AOS====================
 AOS.init();
 
+$(document).ready(function () {
+  $('[data-toggle="tooltip"]').tooltip();
+});
+
 // ====================ISOTOPE====================
 $(document).ready(function () {
   var $grid = $("#product-grid").isotope({
